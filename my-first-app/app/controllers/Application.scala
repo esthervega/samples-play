@@ -9,8 +9,11 @@ object Application extends Controller {
     Ok(views.html.index("Your new application is ready."))
   }
   
-  def nameWelcome(name: String) = Action {
-    Ok("Hello and welcome! " + name)
+  def nameWelcome(name: String, age:Int) = Action {
+    Ok("Hello and welcome! " + name + " And you are... " + age + " years old")
   }
 
+  def nameWelcomeNeska() = Action {
+    Redirect(routes.Application.nameWelcome("Neska", 32))
+  }
 }
