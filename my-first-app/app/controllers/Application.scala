@@ -20,4 +20,16 @@ object Application extends Controller {
   def nameWelcomeXml(name: String) = Action {
     Ok("<h1>Hello and welcome! " + name +"</h1>").as("text/plain")
   }
+  
+  def home = Action {
+    implicit request => Ok(views.html.myHome())
+/*      Ok {
+        request.flash.get("logged").getOrElse("Please log in!")
+      }*/
+  }
+  
+  def log(name: String) = Action {
+    Redirect(routes.Application.home).flashing(
+        "logged" -> ("Welcome Back!" + name))
+  }
 }
