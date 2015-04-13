@@ -16,4 +16,8 @@ object Application extends Controller {
   def nameWelcomeNeska() = Action {
     Redirect(routes.Application.nameWelcome("Neska", 32))
   }
+  
+  def nameWelcomeXml(name: String) = Action {
+    Ok("<h1>Hello and welcome! " + name +"</h1>").as("text/plain")
+  }
 }

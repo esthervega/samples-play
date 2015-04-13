@@ -10,3 +10,4 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET     /hello/:name                controllers.Application.nameWelcome(name, age: Int ?= 1)
 GET     /hello_neska                controllers.Application.nameWelcomeNeska()
+GET     /hello_xml                controllers.Application.nameWelcomeXml(name)
