@@ -1,3 +1,6 @@
+sbt-plugin" % "2.4.0" NEEDS JAVA 8
+**********************************
+
 After creating a new app:
 activator new 'travel-app' play-scala
 
