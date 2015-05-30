@@ -1,0 +1,160 @@
+After creating a new app:
+activator new 'travel-app' play-scala
+
+it was created ok, but then running >>activator would fail with a Version error problem.
+
+java.lang.UnsupportedClassVersionError: play/runsupport/classloader/ApplicationClassLoaderProvider : Unsupported major.minor version 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:791)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:449)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:71)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:423)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:356)
+	at play.sbt.run.PlayRun$.<init>(PlayRun.scala:35)
+	at play.sbt.run.PlayRun$.<clinit>(PlayRun.scala)
+	at play.sbt.PlaySettings$.defaultSettings$lzycompute(PlaySettings.scala:70)
+	at play.sbt.PlaySettings$.defaultSettings(PlaySettings.scala:47)
+	at play.sbt.Play$.projectSettings(Play.scala:26)
+	at sbt.Load$$anonfun$autoPluginSettings$1$1.apply(Load.scala:666)
+	at sbt.Load$$anonfun$autoPluginSettings$1$1.apply(Load.scala:666)
+	at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:251)
+	at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:251)
+	at scala.collection.immutable.List.foreach(List.scala:318)
+	at scala.collection.TraversableLike$class.flatMap(TraversableLike.scala:251)
+	at scala.collection.AbstractTraversable.flatMap(Traversable.scala:105)
+	at sbt.Load$.autoPluginSettings$1(Load.scala:666)
+	at sbt.Load$.sbt$Load$$expandSettings$1(Load.scala:681)
+	at sbt.Load$$anonfun$sbt$Load$$expandSettings$1$2.apply(Load.scala:682)
+	at sbt.Load$$anonfun$sbt$Load$$expandSettings$1$2.apply(Load.scala:682)
+	at scala.collection.IndexedSeqOptimized$class.foldl(IndexedSeqOptimized.scala:51)
+	at scala.collection.IndexedSeqOptimized$class.foldLeft(IndexedSeqOptimized.scala:60)
+	at scala.collection.mutable.WrappedArray.foldLeft(WrappedArray.scala:34)
+	at scala.collection.TraversableOnce$class.$div$colon(TraversableOnce.scala:138)
+	at scala.collection.AbstractTraversable.$div$colon(Traversable.scala:105)
+	at sbt.Load$.sbt$Load$$expandSettings$1(Load.scala:682)
+	at sbt.Load$.resolveProject(Load.scala:684)
+	at sbt.Load$.finalizeProject$1(Load.scala:549)
+	at sbt.Load$.loadTransitive(Load.scala:577)
+	at sbt.Load$.loadProjects$1(Load.scala:442)
+	at sbt.Load$.loadUnit(Load.scala:446)
+	at sbt.Load$$anonfun$18$$anonfun$apply$11.apply(Load.scala:281)
+	at sbt.Load$$anonfun$18$$anonfun$apply$11.apply(Load.scala:281)
+	at sbt.BuildLoader$$anonfun$componentLoader$1$$anonfun$apply$4$$anonfun$apply$5$$anonfun$apply$6.apply(BuildLoader.scala:91)
+	at sbt.BuildLoader$$anonfun$componentLoader$1$$anonfun$apply$4$$anonfun$apply$5$$anonfun$apply$6.apply(BuildLoader.scala:90)
+	at sbt.BuildLoader.apply(BuildLoader.scala:140)
+	at sbt.Load$.loadAll(Load.scala:334)
+	at sbt.Load$.loadURI(Load.scala:289)
+	at sbt.Load$.load(Load.scala:285)
+	at sbt.Load$.load(Load.scala:276)
+	at sbt.Load$.apply(Load.scala:130)
+	at sbt.Load$.defaultLoad(Load.scala:36)
+	at sbt.BuiltinCommands$.doLoadProject(Main.scala:481)
+	at sbt.BuiltinCommands$$anonfun$loadProjectImpl$2.apply(Main.scala:475)
+	at sbt.BuiltinCommands$$anonfun$loadProjectImpl$2.apply(Main.scala:475)
+	at sbt.Command$$anonfun$applyEffect$1$$anonfun$apply$2.apply(Command.scala:58)
+	at sbt.Command$$anonfun$applyEffect$1$$anonfun$apply$2.apply(Command.scala:58)
+	at sbt.Command$$anonfun$applyEffect$2$$anonfun$apply$3.apply(Command.scala:60)
+	at sbt.Command$$anonfun$applyEffect$2$$anonfun$apply$3.apply(Command.scala:60)
+	at sbt.Command$.process(Command.scala:92)
+	at sbt.MainLoop$$anonfun$1$$anonfun$apply$1.apply(MainLoop.scala:98)
+	at sbt.MainLoop$$anonfun$1$$anonfun$apply$1.apply(MainLoop.scala:98)
+	at sbt.State$$anon$1.process(State.scala:184)
+	at sbt.MainLoop$$anonfun$1.apply(MainLoop.scala:98)
+	at sbt.MainLoop$$anonfun$1.apply(MainLoop.scala:98)
+	at sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)
+	at sbt.MainLoop$.next(MainLoop.scala:98)
+	at sbt.MainLoop$.run(MainLoop.scala:91)
+	at sbt.MainLoop$$anonfun$runWithNewLog$1.apply(MainLoop.scala:70)
+	at sbt.MainLoop$$anonfun$runWithNewLog$1.apply(MainLoop.scala:65)
+	at sbt.Using.apply(Using.scala:24)
+	at sbt.MainLoop$.runWithNewLog(MainLoop.scala:65)
+	at sbt.MainLoop$.runAndClearLast(MainLoop.scala:48)
+	at sbt.MainLoop$.runLoggedLoop(MainLoop.scala:32)
+	at sbt.MainLoop$.runLogged(MainLoop.scala:24)
+	at sbt.StandardMain$.runManaged(Main.scala:53)
+	at sbt.xMain.run(Main.scala:28)
+	at xsbt.boot.Launch$$anonfun$run$1.apply(Launch.scala:109)
+	at xsbt.boot.Launch$.withContextLoader(Launch.scala:128)
+	at xsbt.boot.Launch$.run(Launch.scala:109)
+	at xsbt.boot.Launch$$anonfun$apply$1.apply(Launch.scala:35)
+	at xsbt.boot.Launch$.launch(Launch.scala:117)
+	at xsbt.boot.Launch$.apply(Launch.scala:18)
+	at xsbt.boot.Boot$.runImpl(Boot.scala:41)
+	at xsbt.boot.Boot$.main(Boot.scala:17)
+	at xsbt.boot.Boot.main(Boot.scala)
+[error] java.lang.UnsupportedClassVersionError: play/runsupport/classloader/ApplicationClassLoaderProvider : Unsupported major.minor version 52.0
+
+As I still had the other 'my-first-app' created from previous days, and that was working ok I tried some changes.
+DIFF below:
+
+.............................
+diff --git a/travel-app/build.sbt b/travel-app/build.sbt
+index ef0c71a..f8102a0 100644
+--- a/travel-app/build.sbt
++++ b/travel-app/build.sbt
+@@ -4,17 +4,12 @@ version := "1.0-SNAPSHOT"
+ 
+ lazy val root = (project in file(".")).enablePlugins(PlayScala)
+ 
+-scalaVersion := "2.11.6"
++scalaVersion := "2.11.1"
+ 
+ libraryDependencies ++= Seq(
+   jdbc,
++  anorm,
+   cache,
+-  ws,
+-  specs2 % Test
++  ws
+ )
+ 
+-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+-
+-// Play provides two styles of routers, one expects its actions to be injected, the
+-// other, legacy style, accesses its actions statically.
+-routesGenerator := InjectedRoutesGenerator
+diff --git a/travel-app/project/build.properties b/travel-app/project/build.properties
+index e83f63a..9debb11 100644
+--- a/travel-app/project/build.properties
++++ b/travel-app/project/build.properties
+@@ -1,4 +1,4 @@
+ #Activator-generated Properties
+ #Sat May 30 14:47:36 BST 2015
+ template.uuid=4dd0bfb4-5d69-4e44-a1a9-1a18a28af9b4
+-sbt.version=0.13.8
++sbt.version=0.13.5
+diff --git a/travel-app/project/plugins.sbt b/travel-app/project/plugins.sbt
+index f833ed6..f7422a3 100644
+--- a/travel-app/project/plugins.sbt
++++ b/travel-app/project/plugins.sbt
+@@ -1,16 +1,19 @@
++resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases/"
++
+ // The Play plugin
+-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.0")
++addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.8")
+ 
+ // web plugins
+ 
+ addSbtPlugin("com.typesafe.sbt" % "sbt-coffeescript" % "1.0.0")
+ 
+-addSbtPlugin("com.typesafe.sbt" % "sbt-less" % "1.0.6")
++addSbtPlugin("com.typesafe.sbt" % "sbt-less" % "1.0.0")
++
++addSbtPlugin("com.typesafe.sbt" % "sbt-jshint" % "1.0.1")
+ 
+-addSbtPlugin("com.typesafe.sbt" % "sbt-jshint" % "1.0.3")
++addSbtPlugin("com.typesafe.sbt" % "sbt-rjs" % "1.0.1")
+ 
+-addSbtPlugin("com.typesafe.sbt" % "sbt-rjs" % "1.0.7")
++addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.0.0")
+ 
+-addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.1.0")
++addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.0.0")
+ 
+-addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.1.0")
