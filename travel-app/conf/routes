@@ -22,6 +22,8 @@ GET     /dynamic/*value1                 controllers.Clients.dynamic(value1)
 GET     /items/$id<[0-9]+>               controllers.Clients.show(id) 
 #http://localhost:9000/items/99234 id would only allow numbers, what's in <>
 GET     /long/:number                    controllers.Clients.getLog(number: Long)
+#changing default content type
+GET    /helloHtml                        controllers.Clients.helloHtml
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                    controllers.Assets.versioned(path="/public", file: Asset)
