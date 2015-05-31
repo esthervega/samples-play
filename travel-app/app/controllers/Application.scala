@@ -25,5 +25,9 @@ class Application extends Controller {
     Redirect("/parameter/siempreyo")
   }
   
+  def optional(name: Option[String]) = Action {
+    Ok("hola!!!! you are: " + name.getOrElse("no value"))
+  }
+  
   def todo = TODO
 }
