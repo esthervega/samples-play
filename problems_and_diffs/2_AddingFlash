@@ -1,0 +1,96 @@
+Steps to allow Use of @Flash
+Call to:
+http://localhost:9000/index -> Welcome!
+http://localhost:9000/ok    -> The item has been created
+
+diff --git a/travel-app/app/controllers/Application.scala b/travel-app/app/controllers/Application.scala
+index dcf2821..70270af 100644
+--- a/travel-app/app/controllers/Application.scala
++++ b/travel-app/app/controllers/Application.scala
+@@ -9,8 +9,9 @@ class Application extends Controller {
+     Ok("It works!")
+   }
+   
+-  def index = Action {
+-    Ok(views.html.index("Your new application is ready."))
++  def index = Action { 
++    implicit request =>
++      Ok(views.html.index("Your new application is ready."))
+   }
+   
+   val echo = Action { implicit request =>
+diff --git a/travel-app/app/controllers/Clients.scala b/travel-app/app/controllers/Clients.scala
+index ad82dd6..d2a301b 100644
+--- a/travel-app/app/controllers/Clients.scala
++++ b/travel-app/app/controllers/Clients.scala
+@@ -24,10 +24,27 @@ class Clients extends Controller {
+     Ok ("This is a long..." + number)
+   }
+   
+-  val helloHtml = Action {
++  val helloHtml = Action { implicit request =>
+     Ok(<h1>Hello World!</h1>).as(HTML)
+                              .withHeaders(CACHE_CONTROL -> "max-age=3600", ETAG -> "xx")
+                              .withCookies(Cookie("theme", "blue"))
+                              .discardingCookies(DiscardingCookie("skin"))
++                             .withSession("connected" -> "user@gmail.com")
++                             .withSession(request.session + ("saidHello" -> "yes"))
++                             .withSession(request.session - "saidBye")
+   }
++  
++  def withCookies = Action { request =>
++    request.session.get("connected").map { user =>
++      Ok("Hello " + user)
++    }.getOrElse {
++      Unauthorized("Oops, you are not connected")
++    }
++  }
++  
++  def ok = Action { implicit request =>
++    Redirect("/index")
++      .flashing("success" -> "The item has been created")
++  }
++
+ }
+\ No newline at end of file
+diff --git a/travel-app/app/views/index.scala.html b/travel-app/app/views/index.scala.html
+index d6a6b22..eaba838 100644
+--- a/travel-app/app/views/index.scala.html
++++ b/travel-app/app/views/index.scala.html
+@@ -1,4 +1,4 @@
+-@(message: String)
++@(message: String)(implicit flash: Flash)
+ 
+ @main("Welcome to Play") {
+ 
+diff --git a/travel-app/app/views/main.scala.html b/travel-app/app/views/main.scala.html
+index aff0eff..9c97d09 100644
+--- a/travel-app/app/views/main.scala.html
++++ b/travel-app/app/views/main.scala.html
+@@ -1,4 +1,4 @@
+-@(title: String)(content: Html)
++@(title: String)(content: Html)(implicit flash: Flash)
+ 
+ <!DOCTYPE html>
+ 
+@@ -11,5 +11,7 @@
+     </head>
+     <body>
+         @content
++        <h3>Let's check the flash</h3>
++        @flash.get("success").getOrElse("Welcome!")
+     </body>
+ </html>
+diff --git a/travel-app/conf/routes b/travel-app/conf/routes
+index 86fa191..df8414d 100644
+--- a/travel-app/conf/routes
++++ b/travel-app/conf/routes
+@@ -24,6 +24,8 @@ GET     /items/$id<[0-9]+>               controllers.Clients.show(id)
+ GET     /long/:number                    controllers.Clients.getLog(number: Long)
+ #changing default content type
+ GET    /helloHtml                        controllers.Clients.helloHtml
++GET    /withCookies                      controllers.Clients.withCookies
++GET    /ok                               controllers.Clients.ok
+ 
+ # Map static resources from the /public folder to the /assets URL path
+ GET     /assets/*file                    controllers.Assets.versioned(path="/public", file: Asset)

@@ -9,8 +9,9 @@ class Application extends Controller {
     Ok("It works!")
   }
   
-  def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+  def index = Action { 
+    implicit request =>
+      Ok(views.html.index("Your new application is ready."))
   }
   
   val echo = Action { implicit request =>
