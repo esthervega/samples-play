@@ -27,5 +27,11 @@ GET    /helloHtml                        controllers.Clients.helloHtml
 GET    /withCookies                      controllers.Clients.withCookies
 GET    /ok                               controllers.Clients.ok
 
+#Using parsers
+POST   /textParser                       controllers.MainController.textParser
+POST   /jsonParser                       controllers.MainController.jsonParser
+POST   /save                             controllers.MainController.save
+POST   /saveByUser                       controllers.MainController.saveByUser(username: Option[String] ?= None)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                    controllers.Assets.versioned(path="/public", file: Asset)
