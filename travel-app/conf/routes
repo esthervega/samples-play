@@ -33,5 +33,8 @@ POST   /jsonParser                       controllers.MainController.jsonParser
 POST   /save                             controllers.MainController.save
 POST   /saveByUser                       controllers.MainController.saveByUser(username: Option[String] ?= None)
 
+#Composing actions
+GET    /indexLogged                      controllers.CompositeController.indexLogged
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                    controllers.Assets.versioned(path="/public", file: Asset)
